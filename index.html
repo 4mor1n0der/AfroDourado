@@ -1,1337 +1,213 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-AO">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Afro Dourado — Beleza que Empodera</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap"
-    rel="stylesheet" />
-  <style>
-    :root {
-      --green: #1E5247;
-      --green-dark: #133830;
-      --green-light: #2A6B5C;
-      --gold: #C8A96A;
-      --gold-light: #DFC08A;
-      --gold-pale: #F0DDBA;
-      --bg: #0D1F1B;
-      --bg-mid: #142820;
-      --cream: #F5EDD8;
-      --muted: #9DB8AF;
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0
-    }
-
-    html {
-      scroll-behavior: smooth
-    }
-
-    body {
-      font-family: 'Jost', sans-serif;
-      background: var(--bg);
-      color: var(--cream);
-      overflow-x: hidden
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: repeating-linear-gradient(45deg, rgba(200, 169, 106, .025) 0, rgba(200, 169, 106, .025) 1px, transparent 1px, transparent 12px), repeating-linear-gradient(-45deg, rgba(200, 169, 106, .025) 0, rgba(200, 169, 106, .025) 1px, transparent 1px, transparent 12px);
-      pointer-events: none;
-      z-index: 0
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.1rem 5rem;
-      transition: background .4s
-    }
-
-    nav.scrolled {
-      background: rgba(13, 31, 27, .96);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(200, 169, 106, .12)
-    }
-
-    .nav-logo img {
-      height: 52px;
-      width: 52px;
-      border-radius: 50%;
-      object-fit: cover
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: .78rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      transition: color .3s
-    }
-
-    .nav-links a:hover {
-      color: var(--gold-light)
-    }
-
-    .nav-cta {
-      background: var(--gold) !important;
-      color: var(--green-dark) !important;
-      padding: .5rem 1.4rem !important;
-      font-weight: 600 !important
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      z-index: 1
-    }
-
-    .hero-glow {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 55% 65% at 75% 50%, rgba(30, 82, 71, .35) 0, transparent 70%), radial-gradient(ellipse 40% 50% at 15% 70%, rgba(200, 169, 106, .08) 0, transparent 60%);
-      pointer-events: none
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 10rem 4rem 6rem 5rem
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      font-size: .68rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(200, 169, 106, .35);
-      padding: .4rem 1.1rem;
-      margin-bottom: 2rem;
-      animation: fadeUp .8s ease both
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 5.5vw, 6rem);
-      line-height: 1;
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 1.5rem;
-      animation: fadeUp .8s .12s ease both
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold-light)
-    }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 400px;
-      margin-bottom: 2.8rem;
-      animation: fadeUp .8s .24s ease both
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      animation: fadeUp .8s .36s ease both
-    }
-
-    .btn-gold {
-      background: var(--gold);
-      color: var(--green-dark);
-      padding: .85rem 2.2rem;
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background .3s, transform .2s
-    }
-
-    .btn-gold:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px)
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--cream);
-      padding: .85rem 2.2rem;
-      font-size: .8rem;
-      font-weight: 500;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid rgba(245, 237, 216, .25);
-      cursor: pointer;
-      transition: border-color .3s, color .3s
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold-light)
-    }
-
-    .hero-stats {
-      position: absolute;
-      bottom: 3.5rem;
-      left: 5rem;
-      display: flex;
-      gap: 3.5rem;
-      z-index: 2;
-      animation: fadeUp .8s .5s ease both
-    }
-
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--gold-light);
-      line-height: 1
-    }
-
-    .stat-label {
-      font-size: .68rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: .3rem
-    }
-
-    .hero-visual {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh
-    }
-
-    .logo-ring {
-      position: relative;
-      width: 420px;
-      height: 420px;
-      animation: float 7s ease-in-out infinite
-    }
-
-    .logo-ring::before {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent 0%, var(--gold) 25%, transparent 50%, var(--gold-light) 75%, transparent 100%);
-      animation: spin 10s linear infinite;
-      opacity: .5
-    }
-
-    .logo-ring::after {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      background: var(--bg)
-    }
-
-    .logo-ring img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      z-index: 2;
-      box-shadow: 0 0 60px rgba(200, 169, 106, .2), 0 0 120px rgba(200, 169, 106, .08)
-    }
-
-    .marquee-wrap {
-      overflow: hidden;
-      background: var(--green);
-      padding: .85rem 0;
-      position: relative;
-      z-index: 1
-    }
-
-    .marquee-track {
-      display: flex;
-      animation: marquee 22s linear infinite;
-      white-space: nowrap
-    }
-
-    .marquee-item {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      font-style: italic;
-      font-weight: 600;
-      color: var(--gold-pale);
-      padding: 0 2rem;
-      letter-spacing: .04em
-    }
-
-    .marquee-sep {
-      color: rgba(200, 169, 106, .5);
-      padding: 0 .3rem
-    }
-
-    section {
-      padding: 7rem 5rem;
-      position: relative;
-      z-index: 1
-    }
-
-    .sec-tag {
-      font-size: .68rem;
-      letter-spacing: .24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: .9rem
-    }
-
-    .sec-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 3.4rem);
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.1;
-      margin-bottom: 1rem
-    }
-
-    .sec-title em {
-      font-style: italic;
-      color: var(--gold-light)
-    }
-
-    .about {
-      background: var(--bg-mid);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center
-    }
-
-    .about-text p {
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 1.2rem;
-      font-size: .95rem
-    }
-
-    .about-text strong {
-      color: var(--gold-light)
-    }
-
-    .about-logo-wrap {
-      aspect-ratio: 1;
-      max-width: 360px;
-      margin: 0 auto;
-      position: relative
-    }
-
-    .about-logo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      display: block;
-      box-shadow: 0 20px 80px rgba(200, 169, 106, .15)
-    }
-
-    .about-logo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -12px;
-      border-radius: 50%;
-      border: 1px solid rgba(200, 169, 106, .25)
-    }
-
-    .about-logo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: -24px;
-      border-radius: 50%;
-      border: 1px dashed rgba(200, 169, 106, .12)
-    }
-
-    .about-badge {
-      position: absolute;
-      bottom: 0;
-      right: -10px;
-      width: 110px;
-      height: 110px;
-      background: var(--gold);
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--green-dark)
-    }
-
-    .about-badge strong {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1
-    }
-
-    .about-badge small {
-      font-size: .55rem;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      text-align: center
-    }
-
-    .services {
-      background: var(--bg)
-    }
-
-    .services-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 3.5rem
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid rgba(200, 169, 106, .1)
-    }
-
-    .svc-card {
-      padding: 2.5rem;
-      border-right: 1px solid rgba(200, 169, 106, .1);
-      border-bottom: 1px solid rgba(200, 169, 106, .1);
-      position: relative;
-      overflow: hidden;
-      transition: background .35s
-    }
-
-    .svc-card:hover {
-      background: rgba(30, 82, 71, .25)
-    }
-
-    .svc-card::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 2px;
-      width: 0;
-      background: var(--gold);
-      transition: width .4s ease
-    }
-
-    .svc-card:hover::after {
-      width: 100%
-    }
-
-    .svc-icon {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-      display: block
-    }
-
-    .svc-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: .5rem
-    }
-
-    .svc-desc {
-      font-size: .83rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1.2rem
-    }
-
-    .svc-price {
-      font-size: .72rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gold)
-    }
-
-    .gallery {
-      background: var(--bg-mid);
-      padding-bottom: 0
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: 240px 240px;
-      gap: 3px;
-      margin-top: 3rem
-    }
-
-    .gal-item {
-      background: linear-gradient(135deg, var(--green-dark), var(--bg));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer
-    }
-
-    .gal-item:first-child {
-      grid-row: 1/3;
-      font-size: 7rem
-    }
-
-    .gal-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 1.2rem;
-      background: linear-gradient(to top, rgba(13, 31, 27, .9), transparent);
-      font-size: .72rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gold-pale);
-      transform: translateY(100%);
-      transition: transform .3s ease
-    }
-
-    .gal-item:hover .gal-label {
-      transform: translateY(0)
-    }
-
-    .testimonials {
-      background: var(--bg)
-    }
-
-    .testi-head {
-      text-align: center;
-      margin-bottom: 4rem
-    }
-
-    .testi-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem
-    }
-
-    .testi-card {
-      border: 1px solid rgba(200, 169, 106, .14);
-      padding: 2rem;
-      position: relative;
-      transition: border-color .3s
-    }
-
-    .testi-card:hover {
-      border-color: rgba(200, 169, 106, .35)
-    }
-
-    .testi-stars {
-      color: var(--gold);
-      font-size: .85rem;
-      margin-bottom: 1rem
-    }
-
-    .testi-quote {
-      font-size: .9rem;
-      color: var(--muted);
-      line-height: 1.78;
-      font-style: italic;
-      margin-bottom: 1.5rem
-    }
-
-    .testi-author {
-      display: flex;
-      align-items: center;
-      gap: .8rem
-    }
-
-    .testi-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      border: 1px solid rgba(200, 169, 106, .25);
-      flex-shrink: 0
-    }
-
-    .testi-name {
-      font-size: .85rem;
-      font-weight: 500;
-      color: var(--cream)
-    }
-
-    .testi-role {
-      font-size: .7rem;
-      color: var(--gold);
-      letter-spacing: .1em;
-      text-transform: uppercase
-    }
-
-    .big-quote {
-      position: absolute;
-      top: 1.2rem;
-      right: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 5rem;
-      line-height: 1;
-      color: rgba(200, 169, 106, .07);
-      font-weight: 700
-    }
-
-    .hours-cta {
-      background: var(--green);
-      display: grid;
-      grid-template-columns: 1fr 1fr
-    }
-
-    .hours-panel {
-      padding: 5rem;
-      border-right: 1px solid rgba(200, 169, 106, .15)
-    }
-
-    .hours-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 2rem
-    }
-
-    .hours-table tr td {
-      padding: .65rem 0;
-      font-size: .88rem
-    }
-
-    .hours-table tr td:first-child {
-      color: var(--muted);
-      width: 50%
-    }
-
-    .hours-table tr td:last-child {
-      color: var(--cream);
-      font-weight: 500
-    }
-
-    .hours-table .closed td {
-      color: rgba(200, 169, 106, .4) !important
-    }
-
-    .hours-table tr {
-      border-bottom: 1px solid rgba(200, 169, 106, .08)
-    }
-
-    .today-row td {
-      color: var(--gold-light) !important
-    }
-
-    .today-dot::before {
-      content: '● ';
-      font-size: .5rem;
-      color: var(--gold);
-      vertical-align: middle
-    }
-
-    .cta-panel {
-      padding: 5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center
-    }
-
-    .cta-panel .sec-title {
-      margin-bottom: 1rem
-    }
-
-    .cta-panel p {
-      font-size: .92rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 2rem
-    }
-
-    .cta-btns {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap
-    }
-
-    .info-strip {
-      background: var(--bg);
-      border-top: 1px solid rgba(200, 169, 106, .12);
-      display: flex;
-      position: relative;
-      z-index: 1
-    }
-
-    .info-item {
-      flex: 1;
-      padding: 2rem 2.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      border-right: 1px solid rgba(200, 169, 106, .1)
-    }
-
-    .info-item:last-child {
-      border-right: none
-    }
-
-    .info-icon {
-      font-size: 1.8rem;
-      flex-shrink: 0
-    }
-
-    .info-label {
-      font-size: .68rem;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .3rem
-    }
-
-    .info-val {
-      font-size: .9rem;
-      color: var(--cream);
-      line-height: 1.4
-    }
-
-    footer {
-      background: #070f0d;
-      padding: 4rem 5rem 2rem;
-      border-top: 1px solid rgba(200, 169, 106, .1);
-      position: relative;
-      z-index: 1
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 5rem;
-      margin-bottom: 3rem
-    }
-
-    .footer-logo img {
-      height: 72px;
-      width: 72px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1.2rem
-    }
-
-    .footer-desc {
-      font-size: .85rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 260px;
-      margin-bottom: 1.5rem
-    }
-
-    .socials {
-      display: flex;
-      gap: .7rem
-    }
-
-    .social-btn {
-      width: 36px;
-      height: 36px;
-      border: 1px solid rgba(200, 169, 106, .25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: var(--muted);
-      transition: border-color .3s, color .3s
-    }
-
-    .social-btn:hover {
-      border-color: var(--gold);
-      color: var(--gold-light)
-    }
-
-    .footer-col h4 {
-      font-size: .68rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.3rem
-    }
-
-    .footer-col ul {
-      list-style: none
-    }
-
-    .footer-col li {
-      margin-bottom: .55rem
-    }
-
-    .footer-col a {
-      font-size: .85rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color .3s
-    }
-
-    .footer-col a:hover {
-      color: var(--cream)
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(200, 169, 106, .08);
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center
-    }
-
-    .footer-bottom p {
-      font-size: .72rem;
-      color: rgba(157, 184, 175, .45);
-      letter-spacing: .06em
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0)
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(22px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    @keyframes float {
-
-      0%,
-      100% {
-        transform: translateY(0)
-      }
-
-      50% {
-        transform: translateY(-14px)
-      }
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg)
-      }
-
-      to {
-        transform: rotate(360deg)
-      }
-    }
-
-    @keyframes marquee {
-      from {
-        transform: translateX(0)
-      }
-
-      to {
-        transform: translateX(-50%)
-      }
-    }
-
-    @media(max-width:960px) {
-      nav {
-        padding: 1rem 1.8rem
-      }
-
-      .nav-links {
-        display: none
-      }
-
-      .hero {
-        grid-template-columns: 1fr
-      }
-
-      .hero-visual {
-        display: none
-      }
-
-      .hero-content {
-        padding: 8rem 2rem 5rem
-      }
-
-      .hero-stats {
-        left: 2rem;
-        gap: 2.5rem
-      }
-
-      section {
-        padding: 5rem 2rem
-      }
-
-      .about {
-        grid-template-columns: 1fr;
-        gap: 3rem
-      }
-
-      .services-head {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr 1fr
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto
-      }
-
-      .gal-item:first-child {
-        grid-row: auto;
-        font-size: 4rem
-      }
-
-      .testi-grid {
-        grid-template-columns: 1fr
-      }
-
-      .hours-cta {
-        grid-template-columns: 1fr
-      }
-
-      .hours-panel {
-        border-right: none;
-        border-bottom: 1px solid rgba(200, 169, 106, .15);
-        padding: 3rem 2rem
-      }
-
-      .cta-panel {
-        padding: 3rem 2rem
-      }
-
-      .info-strip {
-        flex-direction: column
-      }
-
-      .info-item {
-        border-right: none;
-        border-bottom: 1px solid rgba(200, 169, 106, .08)
-      }
-
-      footer {
-        padding: 3rem 2rem 1.5rem
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afro Dourado</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0f1e1a;
+  color:white;
+}
+
+/* NAVBAR */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 50px;
+  background:#10231e;
+}
+
+.nav-logo img{
+  height:65px;
+  width:65px;
+  object-fit:contain;
+  border-radius:50%;
+  background:white;
+  padding:5px;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  list-style:none;
+}
+
+.nav-links a{
+  color:#d6b36a;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:80px 50px;
+  min-height:90vh;
+}
+
+.hero-text{
+  max-width:500px;
+}
+
+.hero-text h1{
+  font-size:58px;
+  margin-bottom:20px;
+}
+
+.hero-text p{
+  font-size:18px;
+  color:#ddd;
+}
+
+.hero-logo{
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:linear-gradient(45deg,#d6b36a,#8b6d2b);
+  padding:8px;
+}
+
+.hero-logo img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:contain;
+  background:white;
+  padding:20px;
+}
+
+/* ABOUT */
+.about{
+  padding:80px 50px;
+  background:#132822;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.about img{
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  object-fit:contain;
+  background:white;
+  padding:20px;
+}
+
+.about-text{
+  max-width:550px;
+}
+
+/* FOOTER */
+footer{
+  padding:40px 50px;
+  background:#08110d;
+  text-align:center;
+}
+
+.footer-logo img{
+  width:80px;
+  height:80px;
+  object-fit:contain;
+  border-radius:50%;
+  background:white;
+  padding:8px;
+  margin-bottom:15px;
+}
+
+@media(max-width:900px){
+
+.hero{
+  flex-direction:column;
+  text-align:center;
+  gap:40px;
+}
+
+.about{
+  flex-direction:column;
+  gap:40px;
+  text-align:center;
+}
+
+.hero-logo{
+  width:280px;
+  height:280px;
+}
+
+.hero-text h1{
+  font-size:42px;
+}
+
+nav{
+  flex-direction:column;
+  gap:20px;
+}
+
+.nav-links{
+  flex-wrap:wrap;
+  justify-content:center;
+}
+}
+</style>
 </head>
 
 <body>
 
-  <nav id="nav">
-    <a href="#" class="nav-logo"><img
-        src="AfroDourado (1).jpg"
-        alt="Afro Dourado" /></a>
-    <ul class="nav-links">
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#galeria">Galeria</a></li>
-      <li><a href="#horarios">Horários</a></li>
-      <li><a href="#agendar" class="nav-cta">Agendar</a></li>
-    </ul>
-  </nav>
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.jpg" alt="Afro Dourado">
+  </a>
 
-  <section class="hero" id="inicio">
-    <div class="hero-glow"></div>
-    <div class="hero-content">
-      <div class="hero-badge">✦ Salão de Beleza Afro · Luanda</div>
-      <h1 class="hero-title">Beleza que<br><em>Empodera</em><br>&amp; Liberta</h1>
-      <p class="hero-sub">Especialistas em cabelos crespos, cacheados e afro. Cada fio celebrado com técnica, amor e
-        orgulho da identidade negra.</p>
-      <div class="hero-btns">
-        <a href="https://wa.me/244932789299" target="_blank" class="btn-gold">📱 Agendar pelo WhatsApp</a>
-        <a href="#servicos" class="btn-outline">Ver Serviços</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="logo-ring">
-        <img
-          src="logo1.jpg"
-          alt="Afro Dourado" />
-      </div>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num">500+</div>
-        <div class="stat-label">Clientes Felizes</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">8</div>
-        <div class="stat-label">Anos de Expertise</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">20+</div>
-        <div class="stat-label">Serviços</div>
-      </div>
-    </div>
-  </section>
+  <ul class="nav-links">
+    <li><a href="#">Sobre</a></li>
+    <li><a href="#">Serviços</a></li>
+    <li><a href="#">Galeria</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
 
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span class="marquee-item">Tranças Africanas</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Box Braids</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Cachos Naturais</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Mega Hair</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Hidratação Profunda</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Penteados Afro</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Coloração</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Knotless Braids</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Tranças Africanas</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Box Braids</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Cachos Naturais</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Mega Hair</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Hidratação Profunda</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Penteados Afro</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Coloração</span><span class="marquee-sep">✦</span>
-      <span class="marquee-item">Knotless Braids</span><span class="marquee-sep">✦</span>
-    </div>
+<section class="hero">
+  <div class="hero-text">
+    <h1>Beleza que Empodera</h1>
+    <p>
+      Especialistas em cabelos afro, tranças,
+      tratamentos e autoestima feminina.
+    </p>
   </div>
 
-  <section class="about" id="sobre">
-    <div class="about-text reveal">
-      <span class="sec-tag">✦ A Nossa História</span>
-      <h2 class="sec-title">Cuidamos de cada <em>fio</em> com alma</h2>
-      <p>O <strong>Afro Dourado</strong> nasceu do sonho de valorizar a beleza negra na sua essência mais pura.
-        Acreditamos que cabelos crespos e cacheados são uma herança cultural rica, cheia de força e identidade.</p>
-      <p>Com técnicas especializadas e produtos cuidadosamente seleccionados, a nossa equipa transforma cada visita numa
-        experiência de <strong>autocuidado, empoderamento e celebração</strong> da sua beleza natural.</p>
-      <p>Encontramo-nos na <strong>Rua do Aeroporto Internacional, em frente à Sonair (Mártires), Luanda</strong> —
-        prontas para recebê-la de segunda a sexta e ao domingo.</p>
-      <br>
-      <a href="https://wa.me/244932789299" target="_blank" class="btn-gold">Falar Connosco</a>
-    </div>
-    <div class="about-visual reveal">
-      <div class="about-logo-wrap">
-        <img
-          src="logo1.png"
-          alt="Logo Afro Dourado" />
-        <div class="about-badge"><strong>8+</strong><small>Anos de experiência</small></div>
-      </div>
-    </div>
-  </section>
+  <div class="hero-logo">
+    <img src="logo1.jpg" alt="Afro Dourado">
+  </div>
+</section>
 
-  <section class="services" id="servicos">
-    <div class="services-head reveal">
-      <div>
-        <span class="sec-tag">✦ O que Oferecemos</span>
-        <h2 class="sec-title">Os Nossos <em>Serviços</em></h2>
-      </div>
-      <a href="https://wa.me/244932789299" target="_blank" class="btn-outline">Consultar preços</a>
-    </div>
-    <div class="services-grid">
-      <div class="svc-card reveal">
-        <div class="svc-name">Tranças Africanas</div>
-        <p class="svc-desc">Box braids, cornrows, knotless braids e muito mais. Técnicas tradicionais africanas com
-          acabamento impecável e duradouro.</p>
-        <div class="svc-price">Consulte o preço</div>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-name">Corte &amp; Finalização</div>
-        <p class="svc-desc">Cortes especializados para cabelos crespos e cacheados, com finalização que realça os seus
-          cachos naturais.</p>
-        <div class="svc-price">Consulte o preço</div>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-name">Hidratação Profunda</div>
-        <p class="svc-desc">Tratamentos intensivos que restauram vitalidade e brilho dos fios com produtos naturais
-          seleccionados.</p>
-        <div class="svc-price">Consulte o preço</div>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-name">Mega Hair &amp; Apliques</div>
-        <p class="svc-desc">Extensões de alta qualidade com técnicas que preservam a saúde dos seus fios, valorizando
-          comprimento e volume.</p>
-        <div class="svc-price">Consulte o preço</div>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-name">Coloração &amp; Mechas</div>
-        <p class="svc-desc">Colorações vibrantes e mechas delicadas com produtos de qualidade que protegem a estrutura
-          capilar.</p>
-        <div class="svc-price">Consulte o preço</div>
-      </div>
-      <div class="svc-card reveal">
-        <div class="svc-name">Penteados Especiais</div>
-        <p class="svc-desc">Penteados para eventos, casamentos e celebrações. Da elegância à criatividade, beleza afro
-          em cada ocasião.</p>
-        <div class="svc-price">Consulte o preço</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery" id="galeria">
-    <div class="reveal">
-      <span class="sec-tag">✦ O Nosso Trabalho</span>
-      <h2 class="sec-title">Galeria de <em>Transformações</em></h2>
-    </div>
-    <div class="gallery-grid">
-      <div class="gal-item reveal" style="background:url('img.png') center/cover no-repeat;">
-        <div class="gal-label">Box Braids Coloridas</div>
-      </div>
-      <div class="gal-item reveal" style="background:url('img2.png') center/cover no-repeat;">
-        <div class="gal-label">Penteado de Festa</div>
-      </div>
-      <div class="gal-item reveal" style="background:url('img3.png') center/cover no-repeat;">
-        <div class="gal-label">Cachos Naturais</div>
-      </div>
-      <div class="gal-item reveal" style="background:url('img4.png') center/cover no-repeat;">
-        <div class="gal-label">Cornrows Africanas</div>
-      </div>
-      <div class="gal-item reveal" style="background:url('img5.png') center/cover no-repeat;">
-        <div class="gal-label">Mega Hair Natural</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonials" id="depoimentos">
-    <div class="testi-head reveal">
-      <span class="sec-tag">✦ Depoimentos</span>
-      <h2 class="sec-title">O que dizem as <em>nossas clientes</em></h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="big-quote">"</div>
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Finalmente encontrei um salão que realmente entende o meu cabelo! As tranças ficaram
-          perfeitas e duraram muito mais do que esperava.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">👩🏾</div>
-          <div>
-            <div class="testi-name">Madalena Santos</div>
-            <div class="testi-role">Cliente fidelizada</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="big-quote">"</div>
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">A hidratação transformou completamente o meu cabelo crespo. A equipa é muito profissional
-          e atenciosa. Recomendo a todas!</p>
-        <div class="testi-author">
-          <div class="testi-avatar">👩🏿</div>
-          <div>
-            <div class="testi-name">Conceição Ferreira</div>
-            <div class="testi-role">Cliente desde 2021</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal">
-        <div class="big-quote">"</div>
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Fiz o meu penteado de casamento aqui e foi simplesmente mágico. Entenderam exactamente o
-          que eu queria!</p>
-        <div class="testi-author">
-          <div class="testi-avatar">👸🏾</div>
-          <div>
-            <div class="testi-name">Esperança Lopes</div>
-            <div class="testi-role">Noiva — Casamento 2024</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hours-cta" id="horarios">
-    <div class="hours-panel reveal">
-      <span class="sec-tag">✦ Funcionamento</span>
-      <h2 class="sec-title">Os Nossos <em>Horários</em></h2>
-      <table class="hours-table" id="hoursTable">
-        <tr>
-          <td>Segunda-feira</td>
-          <td>08:00 – 19:00</td>
-        </tr>
-        <tr>
-          <td>Terça-feira</td>
-          <td>08:00 – 19:00</td>
-        </tr>
-        <tr>
-          <td>Quarta-feira</td>
-          <td>08:00 – 19:00</td>
-        </tr>
-        <tr>
-          <td>Quinta-feira</td>
-          <td>08:00 – 19:00</td>
-        </tr>
-        <tr>
-          <td>Sexta-feira</td>
-          <td>08:00 – 19:00</td>
-        </tr>
-        <tr class="closed">
-          <td>Sábado</td>
-          <td>Fechado</td>
-        </tr>
-        <tr>
-          <td>Domingo</td>
-          <td>09:00 – 15:00</td>
-        </tr>
-      </table>
-    </div>
-    <div class="cta-panel reveal" id="agendar">
-      <span class="sec-tag">✦ Reserve o seu momento</span>
-      <h2 class="sec-title">Pronta para a sua <em>transformação?</em></h2>
-      <p>Agende hoje e descubra porque somos o espaço favorito das mulheres que celebram a beleza afro em Luanda.</p>
-      <div class="cta-btns">
-        <a href="https://wa.me/244932789299" target="_blank" class="btn-gold">📱 WhatsApp</a>
-        <a href="tel:+244932789299" class="btn-outline">📞 932 789 299</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="info-strip">
-    <div class="info-item">
-      <div class="info-icon">📍</div>
-      <div>
-        <div class="info-label">Morada</div>
-        <div class="info-val">Rua do Aeroporto Internacional<br>Em frente à Sonair (Mártires), Luanda</div>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-icon">📞</div>
-      <div>
-        <div class="info-label">Telefone / WhatsApp</div>
-        <div class="info-val">932 789 299</div>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-icon">🕐</div>
-      <div>
-        <div class="info-label">Horário</div>
-        <div class="info-val">Seg–Sex: 08h–19h &nbsp;|&nbsp; Dom: 09h–15h<br><span
-            style="color:rgba(200,169,106,.5);font-size:.8rem">Fechado ao Sábado</span></div>
-      </div>
-    </div>
-    <div class="info-item">
-      <div class="info-icon">📘</div>
-      <div>
-        <div class="info-label">Redes Sociais</div>
-        <div class="info-val"><a href="https://www.facebook.com/afrodourado" target="_blank"
-            style="color:#DFC08A;text-decoration:none">facebook.com/afrodourado</a></div>
-      </div>
-    </div>
+<section class="about">
+  <div class="about-text">
+    <h2>Sobre Nós</h2>
+    <p>
+      O Afro Dourado nasceu para valorizar a beleza negra,
+      celebrando identidade, elegância e poder feminino.
+    </p>
   </div>
 
-  <footer>
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo"><img
-            src="logo1.jpg"
-            alt="Logo Afro Dourado" /></div>
-        <p class="footer-desc">Especialistas em beleza afro, celebrando a identidade negra através de técnicas capilares
-          de excelência em Luanda, Angola.</p>
-        <div class="socials">
-          <a href="https://www.facebook.com/afrodourado" target="_blank" class="social-btn">f</a>
-          <a href="https://wa.me/244932789299" target="_blank" class="social-btn">w</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Serviços</h4>
-        <ul>
-          <li><a href="#">Tranças Africanas</a></li>
-          <li><a href="#">Corte &amp; Finalização</a></li>
-          <li><a href="#">Hidratação</a></li>
-          <li><a href="#">Mega Hair</a></li>
-          <li><a href="#">Coloração</a></li>
-          <li><a href="#">Penteados Especiais</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="tel:+244932789299">📞 932 789 299</a></li>
-          <li><a href="https://wa.me/244932789299" target="_blank">📱 WhatsApp</a></li>
-          <li><a href="https://www.facebook.com/afrodourado" target="_blank">📘 Facebook</a></li>
-          <li><a href="https://www.instagram.com/afro_dourado/" target="_blank">📸 Instagram</a></li>
-          <li style="color:#9DB8AF;font-size:.82rem;padding:.3rem 0;line-height:1.5">Rua Aeroporto Internacional<br>Em
-            frente à Sonair (Mártires), Luanda e no Huambo perto da Ex TPA</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Afro Dourado · Luanda, Angola · Todos os direitos reservados</p>
-      <p>Fechado ao Sábado</p>
-    </div>
-  </footer>
+  <img src="logo1.jpg" alt="Logo Afro Dourado">
+</section>
 
-  <script>
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 90); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-    const days = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-    const today = days[new Date().getDay()];
-    document.querySelectorAll('#hoursTable tr').forEach(row => {
-      if (row.cells[0]?.textContent.trim() === today) {
-        row.classList.add('today-row');
-        row.cells[0].classList.add('today-dot');
-      }
-    });
-  </script>
+<footer>
+  <div class="footer-logo">
+    <img src="logo1.jpg" alt="Logo Afro Dourado">
+  </div>
+
+  <p>© 2025 Afro Dourado - Todos os direitos reservados</p>
+</footer>
+
 </body>
-
 </html>
+```
